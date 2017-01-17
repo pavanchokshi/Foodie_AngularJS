@@ -1,0 +1,73 @@
+<div ng-controller="GroupController" ng-init="initFunction()">
+	<div class="row">
+		<strong><h1>{{ groupName }}</h1></strong>
+		<div class="col-xs-2 col-xs-offset-8" style="padding-bottom: 3%;">
+			<div class="col-xs-1" ng-if="isMember">
+				<button class="btn btn-primary btn-sm ng-hide"
+					style="background: #47639E;" aria-hidden="true"
+					ng-click="addMember()" ng-show="joinGroup">
+					<span class="glyphicon glyphicon-plus"></span> Join Group
+				</button>
+				<button class="btn btn-primary btn-sm ng-hide"
+					style="background: #47639E;" aria-hidden="true"
+					ng-show="requestSent">
+					<span class="glyphicon glyphicon-ok"></span> Request Sent
+				</button>
+			</div>
+		</div>
+		<div class="col-xs-2 col-xs-offset-8" style="padding-bottom: 3%;">
+			<div class="col-xs-1" ng-if="isAdmin">
+				<button class="btn btn-danger btn-sm" style="background: #47639E;"
+					aria-hidden="true" ng-click="deleteGroup()">Delete Group</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<a href="#" class="pull-right">View all</a>
+					<h4>Members</h4>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="list-group" ng-repeat="member in members">
+							<div class="col-xs-10">
+								<a href="" class="list-group-item">{{ member }}</a>
+							</div>
+							<div class="col-xs-1 col-xs-1" ng-if="isAdmin">
+								<button class="btn btn-primary btn-sm"
+									style="background: #47639E;" aria-hidden="true"
+									ng-click="deleteMember(member)">Delete</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row ng-hide" ng-if="isAdmin" ng-show="pendingRequests">
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<a href="#" class="pull-right">View all</a>
+					<h4>Pending Requests</h4>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="list-group" ng-repeat="member in pendingRequests">
+							<div class="col-xs-10">
+								<a href="" class="list-group-item">{{ member }}</a>
+							</div>
+							<div class="col-xs-1 col-xs-1">
+								<button class="btn btn-primary btn-sm"
+									style="background: #47639E;" aria-hidden="true"
+									ng-click="confirmMember(member)">Confirm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

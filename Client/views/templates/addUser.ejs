@@ -1,0 +1,153 @@
+<div class="container-fluid" id="testDiv">
+    <div class="row">
+        <div class="col-xs-6 col-md-6 col-md-offset-1">
+            <h1 style="color:silver;">The Foodie</h1>
+        </div>
+        <div class="col-xs-4">
+            <div class="row">
+                <!--<form class="form" name="logInForm" role="form" novalidate ng-controller="GetUserController" ng-submit="getUser()">
+                    <div class="row" style="padding-left: 6%;">
+                        <div class="col-xs-12 alert alert-danger alert-dismissible ng-if" role="alert" style="padding-left: 6%;" ng-show="invalidError">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="closeError()">
+								<span aria-hidden="true">&times;</span>
+							</button>
+                            <label class="error">Invalid Credentials! Please try
+								again!</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-5" style="padding-top:3%;">
+                        <label style="color:silver;">Email</label> <input type="email" id="uName" name="uName" ng-model="uName" class="form-control" required /> <label class="error text-danger text-right" style="float: right;" ng-show="logInForm.uName.$dirty && logInForm.uName.$error.required">
+							Required!</label> <label class="error text-danger text-left" style="float: left;" ng-show="logInForm.uName.$dirty && logInForm.uName.$invalid">
+							Invalid Email ID</label>
+                    </div>
+                    <div class="col-xs-5" style="padding-top:3%;">
+                        <label style="color:silver;">Password</label> <input type="password" id="pswd" name="pswd" ng-model="pswd" class="form-control" ng-required="true" />
+                        <span class="error text-danger text-right" style="float: right;" ng-show="logInForm.pswd.$dirty && logInForm.pswd.$invalid">
+							<label ng-show="logInForm.pswd.$error.required">
+								Required!</label>
+						</span>
+                    </div>
+                    <div class="col-xs-2" style="padding-top: 7%;">
+                        <label> <input value="Log In" type="submit"
+							class="btn logIn-btn" />
+						</label>
+                    </div>
+                </form>-->
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 700px; margin: 0 auto">
+                    <div>
+                        <h2 style="padding: 42px 0 24px; font-size: 28px; line-height: 36px; font-weight: bold">
+                            Connect with chefs and the <br> foodie world around you.
+                        </h2>
+                        <!-- <div style="padding-bottom: 20px;">
+							<div class="row">
+								<div class="col-xs-1">
+									<img alt
+										src="https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xap1/t39.2365-6/851565_602269956474188_918638970_n.png"
+										style="vertical-align: middle">
+								</div>
+								<div class="col-xs-10" style="padding-top: 2%;">
+									<span style="padding-left: 1%; font-size: initial;"><strong>
+											See photos and updates </strong></span> <span style="padding-left: 2%;">
+										from friends in News Feed.</span>
+								</div>
+							</div>
+						</div>
+						<div style="padding-bottom: 20px;">
+							<div class="row">
+								<div class="col-xs-1">
+									<img alt
+										src="https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xaf1/t39.2365-6/851585_216271631855613_2121533625_n.png"
+										style="vertical-align: middle;">
+								</div>
+								<div class="col-xs-10" style="padding-top: 2%;">
+									<span style="padding-left: 1%; font-size: initial;"><strong>
+											Share what's new </strong></span> <span style="padding-left: 2%;"> in
+										your life on your Timeline.</span>
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="row">
+								<div class="col-xs-1" style="padding-left: 1%;">
+									<img alt
+										src="https://scontent.fsnc1-1.fna.fbcdn.net/hphotos-xap1/t39.2365-6/851558_160351450817973_1678868765_n.png"
+										style="vertical-align: middle;">
+								</div>
+								<div class="col-xs-10" style="padding-top: 2%;">
+									<span style="padding-left: 1%; font-size: initial;"><strong>
+											Find more </strong></span> <span style="padding-left: 2%;"> of what
+										you're looking for with Search.</span>
+								</div>
+							</div>
+						</div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <form class="form" name="signUpForm" novalidate ng-controller="AddUserController" ng-submit="addUser()">
+                    <h2 style="font-size: 36px; font-weight: bold;">Sign Up</h2>
+                    <h4>It's free and always will be.</h4>
+                    <div class="row" style="padding-left: 2%;">
+                        <div class="col-xs-12 alert alert-danger alert-dismissible ng-if" role="alert" style="padding-left: 6%;" ng-show="reqdError">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+                            <label class="error">Incomplete Form</label>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left: 2%;">
+                        <div class="col-xs-12 alert alert-danger alert-dismissible ng-if" role="alert" style="padding-left: 6%;" ng-show="alreadyExists">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+                            <label class="error">User Already Exists!</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-8 col-md-6">
+                            <input type="text" id="fName" name="fName" class="form-control input-lg" placeholder="First Name" ng-model="fName" required />
+                        </div>
+                        <div class="col-xs-6 col-sm-8 col-md-6">
+                            <input type="text" id="lName" name="lName" class="form-control input-lg" placeholder="Last Name" ng-model="lName" required />
+                        </div>
+                    </div>
+                    <input type="text" id="userName" name="userName" class="form-control input-lg" placeholder="Email ID" ng-model="userName" required /> <span class="error text-danger text-left" style="float: left;" ng-show="usernameInvalid"> Invalid Email ID</span><input
+                        type="text" id="reuserName" name="reuserName" class="form-control input-lg" placeholder="Re-enter Email ID" ng-model="reuserName" required /> <span class="error text-danger text-right" ng-show="emailNoMatch">Email
+						does not match!</span> <input type="password" id="pwd" name="pwd" class="form-control input-lg" placeholder="New Password" ng-model="pwd" required />
+                    <!-- <div class="row">
+						<div class="col-xs-3">
+							<label class="radio-inline" style="padding-top: 25%;"> <input
+								type="radio" name="gender" value="F" id="female"
+								ng-model="gender" /> Female
+							</label>
+						</div>
+						<div class="col-xs-3">
+							<label class="radio-inline" style="padding-top: 25%;"> <input
+								type="radio" name="gender" value="M" id="male" ng-model="gender" />
+								Male
+							</label>
+						</div>
+					</div> -->
+                    <!-- <br /> <span class="help-block"
+						style="padding-bottom: 4%; font-size: smaller;">By clicking
+						Sign Up, you agree to our Terms and that you have read our Data
+						Policy, including our Cookie Use.</span> -->
+                    <div class="group" id="direct_upload" ng-model="files">
+                        <div href="#" class="upload_button" style="height: 30px;" ngf-select="uploadFiles($files)" title="upload" resetOnClick="true">Select a pic</div>
+                        <span>{{message}}</span>
+                    </div>
+                    <button class="btn btn-md btn-primary btn-block signUp-btn" type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

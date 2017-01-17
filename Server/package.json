@@ -1,0 +1,20 @@
+{
+  "name": "RecipeBlog-RabbitMQClient",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "amqp": "^0.2.4",
+    "amqplib": "^0.4.0",
+    "connect-mongo": "^0.8.2",
+    "debug": "~2.2.0",
+    "express": "~3.21.2",
+    "express-session": "^1.11.3",
+    "json-stringify-safe": "^5.0.1",
+    "mongodb": "^2.0.46",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
+  }
+}

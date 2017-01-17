@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html ng-app='recipeApp'>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../libs/angular/angular.min.js"></script>
+
+    <script type="text/javascript" src="../libs/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap/css/bootstrap-theme.min.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../css/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../libs/bootstrap/ui-bootstrap-tpls-0.13.4.min.js"></script>
+
+    <!-- photo upload -->
+
+    <script src="../libs/photoUpload/bower_components/lodash/lodash.js"></script>
+    <script src="../libs/photoUpload/bower_components/cloudinary-core/cloudinary-core.js"></script>
+    <!-- angular file upload -->
+    <script src="../libs/photoUpload/bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+    <!-- angular dependencies -->
+    <script src="../libs/photoUpload/bower_components/angular-resource/angular-resource.js"></script>
+    <!-- cloudinary angular plugin -->
+    <script src="../libs/photoUpload/bower_components/cloudinary_ng/js/angular.cloudinary.js"></script>
+    <!-- angular file upload -->
+    <script src="../libs/photoUpload/bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <!-- photo upload -->
+
+    <link rel='stylesheet' href='/css/default.css' />
+    <link rel='stylesheet' href='/css/home.css' />
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="../js/controllers/AddUserController.js"></script>
+    <script type="text/javascript" src="../js/controllers/GetUserController.js"></script>
+    <script type="text/javascript" src="../js/controllers/HomeController.js"></script>
+    <script type="text/javascript" src="../js/controllers/ProfileController.js"></script>
+    <script type="text/javascript" src="../js/controllers/LogoutController.js"></script>
+    <script type="text/javascript" src="../js/controllers/GroupController.js"></script>
+    <script type="text/javascript" src="../js/controllers/UserController.js"></script>
+    <script type="text/javascript" src="../js/controllers/ReceipeController.js"></script>
+    <script type="text/javascript" src="../js/controllers/UserProfileController.js"></script>
+    <script type="text/javascript" src="../js/controllers/FriendController.js"></script>
+    <script type="text/javascript" src="../js/controllers/SearchCuisineController.js"></script>
+    <script type="text/javascript" src="../js/controllers/IndexController.js"></script>
+    <script type="text/javascript" src="../js/services/dataService.js"></script>
+</head>
+
+<body>
+    <div ng-controller="IndexController">
+        <nav class="navbar navbar-default navbar-fixed-top navbar_white container">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+                    <a class="navbar-brand" href="#"><img src="../images/logo.png" style="display: inline-block; margin-top: -7px;"> <span>&nbsp;CHEFERS</span>
+                    </a>
+                </div>
+                <!--Login Form starts-->
+                <div ng-hide="userLoggedIn" style="float:right;width:85%;">
+                    <form class="navbar-form navbar-right" name="logInForm" role="form" novalidate ng-controller="GetUserController" ng-submit="getUser()">
+                        <span class="alert alert-danger alert-dismissible ng-if" role="alert" ng-show="invalidError">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="closeError()">
+								<span aria-hidden="true">&times;</span>
+                        </button>
+                        <span class="error">Invalid Credentials! Please try
+								again!</span>
+                        </span>
+
+                        <span class="error text-danger text-right" ng-show="logInForm.uName.$dirty && logInForm.uName.$error.required">
+							Required!</span>
+                        <span class="error text-danger text-left" style="float: left;" ng-show="logInForm.uName.$dirty && logInForm.uName.$invalid">
+							Invalid Email ID</span>
+                        <span class="error text-danger text-right" ng-show="logInForm.pswd.$dirty && logInForm.pswd.$invalid">
+							<span ng-show="logInForm.pswd.$error.required">
+								Required!</span>
+                        </span>
+                        <input type="email" id="uName" name="uName" ng-model="uName" class="loginInputBox" required placeholder="Email" />
+                        <input type="password" id="pswd" name="pswd" ng-model="pswd" class="loginInputBox" ng-required="true" placeholder="Password" />
+                        <input value="Log In" type="submit" class="loginButton" />
+                    </form>
+                </div>
+                <!--Login Form ends-->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <form class="navbar-form navbar-left" ng-submit="showSearchResult()" ng-show="userLoggedIn">
+                        <div class="input-group input-group-sm" style="margin-left: 20%; width: 500px;">
+                            <input id="searchText" type="text" style="border-radius: 0;" class="form-control searchTextBox" placeholder="Search" name="search" id="search" ng-model="selectedInput" ng-change="searchUserCuisine()" typeahead="item for item in searchInputs.items |filter:$viewValue | limitTo:8">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default searchTextBox" type="submit" style="border-radius: 0; background: #FFF;">
+									<span class=" glyphicon glyphicon-search "></span>
+								</button>
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right" ng-show="userLoggedIn">
+                        <li>
+                            <!--<a href="# " style="color:#475B62; " ng-click="getUserPage() ">-->
+                            <a ng-href="/me" style="color: #475B62;" ng-click="getUserPage() ">Me&nbsp;&nbsp;<i class="fa fa-user" aria-hidden="true" style="font-size:medium;"></i>
+                            </a>
+                        </li>
+                        <li><a href="/home" style="color: #475B62;">Home&nbsp;&nbsp;<i class="fa fa-home" aria-hidden="true" style="font-size:medium;"></i></a></li>
+                        <li>
+                            <a href="/logout" style="color: #475B62;">Logout&nbsp;&nbsp;<i class=" fa fa-sign-out " aria-hidden="true " title="Log out " style="font-size:medium;"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="top_banner "></div>
+    <div style="padding-top: 70px; " class="container " ng-view></div>
+
+</body>
+
+</html>

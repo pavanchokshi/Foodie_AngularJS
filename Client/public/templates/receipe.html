@@ -1,0 +1,51 @@
+<div ng-init="initFunction()">
+    <div class="row" ng-hide=receipe style="text-align:center;">
+        <i class="fa fa-spinner fa-spin fa-3x fa-fw" style="color:white;"></i>
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="row" ng-show=receipe>
+        <div class="col-md-4" style="padding-right: 26px;padding-left: 30px;">
+            <div class="panel userProfileCard ">
+                <img class="user-Profile-Image" ng-src="{{baseURL}}{{receipe.photoURL}}" alt="{{name.fName}} {{name.lName}}">
+                <div class="panel-body ">
+                    <p style="line-height: 30px;border-bottom: 1px solid #CCC;">Receipe posted by</p>
+                    <p>
+                        <a ng-href="/userProfile/{{receipe.userid}}" style="text-decoration:none; color:white;font-size:large;">{{receipe.name}}</a>
+                        <br/>
+                        <span class="timeAgo " am-time-ago="receipe.timestamp "></span>
+                    </p>
+                    <div>
+                        <span class="likesLabel">
+									{{receipe.totalLikes}}&nbsp;likes</span>
+                        <button type="button" class="viewReceipeBtn" ng-click="likePost($event, receipe)">
+									<span ng-hide="receipe.isLiked"
+										class="glyphicon glyphicon-heart-empty likeIcon"></span> <span
+										ng-show="receipe.isLiked"
+										class="glyphicon glyphicon-heart likeIcon"></span>
+								</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel recipeCardShadowLess" style="margin-left: -23px;margin-right: 10px;">
+                <div class="recipeCard-title ">
+                    <h3 style="margin-top: 10px; margin-left: 10px;    display: inline-block;width:80%;" class="highlight-blue">{{receipe.receipename }}</h3>
+                    <span class="pull-right" style="padding-top: 15px;padding-right: 15px;">{{receipe.cuisine}} Cuisine</span>
+                </div>
+                <div class="panel-body ">
+                    <div>{{ receipe.desc }}</div>
+                    <p class="highlight-blue" style="font-size: medium;margin-top: 10px;border-bottom: 1px solid #CCC;">Ingredients</p>
+                    <ul style="padding-left:10px;padding-left: 10px; margin-left: 10px;">
+                        <li ng-repeat="ingd in receipe.ingredients" style="line-height: 25px;">{{ingd.qty}} {{ingd.qtyUnit}} {{ingd.desc}}</li>
+                    </ul>
+                    <p class="highlight-blue" style="font-size: medium;margin-top: 10px;border-bottom: 1px solid #CCC;">Steps</p>
+                    <ol style="padding-left:10px;padding-left: 10px; margin-left: 10px;">
+                        <li ng-repeat="step in receipe.steps" style="line-height: 25px;">{{step}}</li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

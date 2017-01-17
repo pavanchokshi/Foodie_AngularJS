@@ -1,0 +1,83 @@
+<div ng-controller="SearchCuisineController as sc"
+	ng-init="sc.initFunction()">
+	<div class="row" class="background-container">
+		<div class="row">
+			<div class="col-md-9">
+				<div class="row " ng-repeat="feed in newsfeedDetails ">
+					<div class="panel recipeCard ">
+						<div class="recipeCard-title ">
+
+							<img src="../images/batman.png " class="chefImage "><a
+								ng-href="/userProfile/{{ feed.username }}" class="chefName ">{{
+								feed.name }}</a> posted <span class="highlight-blue ">{{
+								feed.receipename }}</span> <span class="pull-right timeAgo "
+								am-time-ago="feed.timestamp "></span>
+						</div>
+						<div class="panel-body ">
+							<img class="recipeImage " src="{{baseURL}}{{feed.photoURL}}"
+								alt="Dosa ">
+							<div>
+								{{ feed.receipename }} <span class="likesLabel">{{
+									feed.totalLikes}}&nbsp;likes</span>
+								<button type="button" class="viewReceipeBtn"
+									ng-click="likePost($event, feed)">
+									<span ng-hide="feed.isLiked"
+										class="glyphicon glyphicon-heart-empty likeIcon"></span> <span
+										ng-show="feed.isLiked"
+										class="glyphicon glyphicon-heart likeIcon"></span>
+									<!--<span ng-hide="($index == selectedIndex)"class="glyphicon glyphicon-heart-empty"></span>
+                                <span ng-show="($index == selectedIndex)" class="glyphicon glyphicon-heart"></span>-->
+								</button>
+							</div>
+							<div class="feedDesc">{{ feed.desc }}</div>
+							<div></div>
+							<div>
+								<button type="button" class="viewReceipeBtn"
+									ng-click="sc.viewReceipe(feed.id,feed.username)">View
+									Receipe</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="panel recipeCardShadowLess" style="width: 90%">
+					<div class="panel-heading recipeCard-title ">About the
+						application</div>
+					<div class="panel-body ">
+						<div>
+							<p>This application is a recipe blog created to share recipes
+								by chefs. It includes features like sign up, sign in, sign out,
+								posting and viewing recipes. Chefs can send a follow request to
+								a chef and view the entire recipe.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div id="recipeModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header" style="font-size: initial;"></div>
+				<div class="modal-body" style="padding: 20px 50px;">
+					<div class="col-xs-6" ng-switch="sc.isfollower">
+						<span ng-switch-when="no">Please follow user to view
+							recipe!</span>
+						<span ng-switch-when="pendingByUser">Your follow
+							request has not been accepted. Please wait to view the recipe!</span>
+						<span ng-switch-default>Please Accept User's Follow Request to view the recipe!</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div>
+						<button type="button" class="btn btn-default btn-sm"
+							data-dismiss="modal" aria-hidden="true">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

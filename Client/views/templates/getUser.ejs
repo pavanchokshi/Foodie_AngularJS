@@ -1,0 +1,17 @@
+<div>
+	<form name="signUpForm" ng-controller="GetUserController" ng-submit="getUser()">
+		<table>
+			<tr>
+				<td>User Name</td>
+				<td><input type="text" id="userName" name="userName"
+					ng-model="userName" placeholder="Enter User Name or Email" required /> <br /></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="password" id="pwd" name="pwd" ng-model="pwd" placeholder="Enter Password"
+					required /> <br /></td>
+			</tr>
+		</table>
+		<input type="submit" value="Submit"/>
+	</form>
+</div>

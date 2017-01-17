@@ -1,0 +1,36 @@
+<div ng-controller="FriendController" ng-init="initFunction()">
+	<div class="row" style="padding-top: 3%;">
+		<div class="col-xs-8 col-xs-offset-2 panel panel-default ng-hide" ng-show="friends">
+			<div class="panel-body">
+				<div class="col-xs-12" ng-repeat="friend in friends"
+					style="padding-bottom: 4%;">
+					<div>
+						<span class="glyphicon glyphicon-user"></span> <span>
+							{{friend}}</span>
+						<button class="btn btn-success btn-md pull-right">
+							<span class="glyphicon glyphicon-ok"></span> Friends
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row ng-hide" style="padding-top: 3%;"
+		ng-show="pendingFriends">
+		<div class="col-xs-8 col-xs-offset-2 panel panel-default">
+			<div class="panel-body">
+				<div class="col-xs-12" ng-repeat="pf in pendingFriends"
+					style="padding-bottom: 4%;">
+					<div>
+						<span class="glyphicon glyphicon-user"></span> <span>
+							{{pf}}<!-- {{pf.fname}} {{pf.lname}} --></span>
+						<button class="btn btn-default btn-md pull-right"
+							ng-click="addFriend(pf)">
+							<span class="glyphicon glyphicon-plus"></span> Confirm Friend
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

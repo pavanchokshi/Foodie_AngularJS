@@ -1,0 +1,66 @@
+body{
+	//background-color: #90CAF9;
+	//background-color: #CDDC39;
+	background: linear-gradient(to right, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+}
+
+.card {
+	/* Add shadows to create the "card" effect */
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #FBFEF9;
+	border-radius: 0px 30px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+	box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.card-body {
+	overflow: auto;
+}
+
+.card-title {
+	padding: 15px;
+	font-size: 120%;
+	font-weight: bold;
+	color: #C84630;
+	border-bottom: 3px solid #2cb5e8;
+	//linear-gradient(linear, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%)
+	border-radius: 0px 30px 0px 30px;
+}
+
+.card-title p {
+	overflow: auto;
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 0px;
+    font-weight: bolder;
+}
+.card-title p small{
+	font-weight: normal;
+	font-size: 80%;
+}
+
+.card-image {
+	float: right;
+	width: 30%;
+}
+
+.card-description {
+	float: left;
+	width: 70%;
+	padding: 20px;
+	font-size: 150%;
+	color: #296EB4;
+}
+
+.chef-image {
+	width: 40px;
+	height: 40px;
+	float: left;
+}

@@ -1,0 +1,72 @@
+<div ng-controller="UserController as uc" ng-init="initFunction()">
+    <div class="row" ng-show=uc.showLoadingBlock style="text-align:center;">
+        <i class="fa fa-spinner fa-spin fa-3x fa-fw" style="color:white;"></i>
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div class="row" ng-hide=uc.showLoadingBlock>
+        <div class="col-md-3" style="padding-right: 26px;padding-left: 23px;">
+            <div class="panel userProfileCard ">
+                <img class="user-Profile-Image" ng-src="{{baseURL}}{{uc.currentUser.photoURL}}" alt="{{uc.currentUser.fName}} {{uc.currentUser.lName}}">
+                <div class="panel-body ">
+                    <p class="chef-Profile-Name">{{uc.fName}} {{uc.lName}}</p>
+                    <p>
+                        Member since: {{uc.currentUser.timestamp | date : "MMM d, y"}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="recipeCardShadowLess" style="background-color: white;margin-left: -23px;margin-right: 10px; padding: 20px 10px 10px 15px;">
+                <p style="color:#0084BF;margin-bottom:0px;">Username</p>
+                <p style="font-size:x-large;margin-top:-5px;">{{uc.currentUser.userName}}</p>
+                <p style=" color:#0084BF;margin-bottom:0px; ">Name</p>
+                <p style="font-size:x-large;margin-top:-5px;"><span ng-hide="showNamesInputBox">{{uc.fName}} {{uc.lName}}&nbsp;<span class="glyphicon glyphicon-pencil" style="font-size:small;cursor:pointer;" ng-click="updateName()" ></span></span>
+                    <span ng-show="showNamesInputBox">
+                    <input type="text " placeholder="First Name " ng-model="uc.newFname " style="display: inline-block; width: 20%;font-size:x-large;" />
+                    <input type="text " placeholder="Last Name " ng-model="uc.newLname " style="display: inline-block; width: 20%;font-size:x-large;" />
+                    <span class="glyphicon glyphicon-ok" style="font-size:small;cursor:pointer;" ng-click="updateName()" ></span>
+                    </span>
+                </p>
+                <div>
+                    <p class="highlight-blue">Cuisines</p>
+                    <span ng-if="uc.userCuisines.length==0" class="cuisineTags">No cuisines</span>
+                    <span ng-if="uc.userCuisines.length != 0" ng-repeat="cuisine in uc.userCuisines" class="cuisineTags"><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;{{cuisine}}</span>
+                </div>
+                <p class="highlight-blue" style="margin-top: 20px;">Connections</p>
+                <div class="row ">
+                    <div class="col-md-2" style="border-right: 1px solid #CCC; padding-left: 25px;">
+                        <ul style="list-style-type: none; padding-left: initial;">
+                            <li>
+                                <h5 style="display:inline;">
+                                    <a ng-if="uc.followers != 0" href="" ng-click="getOverviewDetails('Followers')">Followers</a>
+                                    <span ng-if="uc.followers == 0">Followers</span>
+                                </h5>
+                                <span class="badge">{{ uc.followers }}</span>
+                            </li>
+                            <li>
+                                <h5 style="display:inline;">
+                                    <a ng-if="uc.followees != 0" href="" ng-click="getOverviewDetails('Following')">Following</a>
+                                    <span ng-if="uc.followees == 0">Following</span>
+                                </h5>
+                                <span class="badge">{{ uc.followees }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-10" style="padding-left: 30px;">
+                        <div ng-show=uc.showProgress style="text-align:center;">
+                            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div ng-hide=uc.showProgress ng-repeat="name in uc.followList" class="followersCard">
+                            <div>
+                                <img ng-if="name.photoURL !== undefined" ng-src="{{baseURL}}{{name.photoURL}}" />
+                                <img ng-if="name.photoURL === undefined" ng-src="{{baseURL}}/v1481426275/defaultUser.png" />
+                                <p><a ng-href="/userProfile/{{name.username}}">{{ name.fname }} {{ name.lname }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

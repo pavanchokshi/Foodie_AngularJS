@@ -1,0 +1,128 @@
+<div class="container" ng-controller="HomeController"
+	ng-init="initFunction()">
+	<div class="row">
+		<div class="col col-md-12 col-sm-12 col-xs-12 col-sm-offset-1">
+			<div class="navbar navbar_blue navbar-fixed-top">
+				<div class="navbar-header">
+					<a href="/home" class="navbar_logo">mf</a>
+				</div>
+				<nav class="collapse navbar-collapse" role="navigation">
+					<form class="navbar-form navbar-left"
+						ng-submit="showSearchResult()">
+						<div class="input-group input-group-sm" style="width: 500px;">
+							<input type="text" class="form-control"
+								placeholder="Search by username or cuisine" name="search" id="search"
+								ng-model="selectedInput" ng-change="searchUserGrp()"
+								typeahead="item for item in searchInputs.items |filter:$viewValue | limitTo:8">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</div>
+						</div>
+					</form>
+
+					<ul class="nav nav-pills navbar-nav navbar-right col-xs-6">
+						<li><a href="#" style="color: white;"
+							ng-click="getUserPage()"><span
+								class="glyphicon glyphicon-user"></span> {{userFName}}</a></li>
+						<li><a href="" ng-click="getHomePage()" style="color: white;">Home</a></li>
+						<li><a href="" style="color: white;"
+							ng-click="getFriendsPage()"><span
+								class="glyphicon glyphicon-user"></span><span
+								class="glyphicon glyphicon-user"></span></a></li>
+						<li><a href="" style="color: white;"><span
+								class="glyphicon glyphicon-comment"></span></a></li>
+						<li><a href="" style="color: white;"><span
+								class="glyphicon glyphicon-globe"></span></a></li>
+						<li><a href="" style="color: white;"><span
+								class="glyphicon glyphicon-lock"></span></a></li>
+						<li class="dropdown"><a href="" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false" style="color: white;"><span
+								class="caret"></span>
+								<ul class="dropdown-menu">
+									<li><a href="">Create Page</a></li>
+									<li role="presentation" class="divider"></li>
+									<li><a role="button" data-toggle="modal"
+										data-target="#createModal">Create Group</a></li>
+									<li><a href="">Your Groups</a></li>
+									<li role="presentation" class="divider"></li>
+									<li><a href="" ng-click="logOutUser()">Log Out</a></li>
+								</ul> </a></li>
+					</ul>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="padding: 6%; padding-left: initial;">
+		<div class="col-xs-12">
+			<div ng-include="templateView.template"></div>
+		</div>
+		<!--
+		<div class="col-xs-2" style="border-left: 1px solid #ccc;">
+			<h4 clas="text-left">Chats</h4>
+			<ul style="list-style-type: none; padding-left: initial;">
+				<li ng-repeat="friend in friends">
+					<h5>
+						<strong>{{ friend }}</strong>
+					</h5>
+				</li>
+			</ul>
+		</div>
+		-->
+		
+	</div>
+
+	<div id="createModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<div class="modal-header" style="font-size: initial;">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					Create New Group
+				</div>
+				<div class="modal-body" style="padding: 20px 50px;">
+					<form role="form">
+						<div class="row ng-if" ng-show="groupModal">
+							<span class="error text-danger text-right" ng-show="groupModal">Form
+								cannot be empty!</span>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label>Group Name</label>
+								</div>
+								<div class="col-xs-9">
+									<input type="text" class="form-control" ng-model="newgroupName" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-xs-3">
+									<label>Members</label>
+								</div>
+								<div class="col-xs-9">
+									<input type="text" class="form-control"
+										ng-model="newMemberName"
+										placeholder="Who do you want to add to the group?" />
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<div>
+						<button type="button" class="btn btn-default btn-sm"
+							data-dismiss="modal" aria-hidden="true">Cancel</button>
+						<button class="btn btn-primary btn-sm"
+							style="background: #47639E;" aria-hidden="true"
+							ng-click="createNewGroup()">Create</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
